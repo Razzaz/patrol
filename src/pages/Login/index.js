@@ -1,51 +1,39 @@
 import React from 'react';
-import {Text, View, StyleSheet, Alert} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
+import {Button, TextInput} from 'react-native-paper';
+import {StatusBarHeader} from '../../components';
 import {colors} from '../../utils';
-import {Appbar, Divider, List, TextInput} from 'react-native-paper';
 
-const ContentTitle = ({title, style}) => (
-  <Appbar.Content
-    title={<Text style={style}> {title} </Text>}
-    style={{
-      justifyContent: 'center',
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}
-  />
-);
-
-const Login = () => {
-  const [text, setText] = React.useState('');
-
-  const _goBack = () => console.log('Went back');
-
-  const _handleSearch = () => console.log('Searching');
-
-  const _handleMore = () => console.log('Shown more');
+const Login = ({navigation}) => {
+  const [secure, setSecure] = React.useState(false);
 
   return (
     <View style={styles.page}>
-      <Appbar.Header style={{height: 100}}>
-        <Appbar.BackAction onPress={_goBack} />
-        <ContentTitle title={'Title'} style={{color: 'white'}} />
-      </Appbar.Header>
-      <TextInput label="UserID" />
-      <Divider style={{height: 10, backgroundColor: '#fff'}} />
-      <TextInput
-        label="Password"
-        secureTextEntry={false}
-        right={<TextInput.Icon name="eye" />}
+      <StatusBarHeader
+        barkStyle="dark-content"
+        backgroundColor={colors.green}
       />
-      <List.Item
-        title="First Item"
-        description="Item description"
-        left={props => <List.Icon {...props} icon="folder" />}
-      />
+      <View style={styles.upperContainer}>
+        <Text style={styles.text}>Patrol</Text>
+      </View>
+      <View style={styles.bottomContainer}>
+        <View>
+          <TextInput label="UserID" />
+          <TextInput
+            label="Password"
+            secureTextEntry={secure}
+            right={
+              <TextInput.Icon name="eye" onPress={() => setSecure(true)} />
+            }
+          />
+        </View>
+        <Button
+          style={styles.button}
+          mode="contained"
+          onPress={() => navigation.navigate('Home')}>
+          Login
+        </Button>
+      </View>
     </View>
   );
 };
@@ -53,10 +41,26 @@ const Login = () => {
 const styles = StyleSheet.create({
   page: {
     flex: 1,
+    backgroundColor: colors.green,
   },
   text: {
-    color: colors.black,
+    fontSize: 48,
+    color: colors.white,
     fontFamily: 'product-sans-light',
+  },
+  upperContainer: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bottomContainer: {
+    borderTopStartRadius: 24,
+    borderTopEndRadius: 24,
+    backgroundColor: colors.white,
+    padding: 24,
+    paddingTop: 40,
+    flex: 1,
+    justifyContent: 'space-between',
   },
 });
 

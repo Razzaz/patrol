@@ -4,7 +4,7 @@ import {Text, View, StyleSheet} from 'react-native';
 const Schedule = () => {
   return (
     <View style={styles.page}>
-      <Text style={styles.text}>Patrol</Text>
+      <Text style={styles.text}>tes</Text>
     </View>
   );
 };

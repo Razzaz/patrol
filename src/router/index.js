@@ -8,7 +8,10 @@ import {
   Home,
   Login,
   Scan,
+  Schedule,
+  Settings,
 } from '../pages';
+import Absent from '../pages/Absent';
 
 const Stack = createNativeStackNavigator();
 const Router = () => {
@@ -51,12 +54,17 @@ const Router = () => {
       />
       <Stack.Screen
         name="Schedule"
-        component={Scan}
+        component={Schedule}
         options={{headerShown: false}}
       />
       <Stack.Screen
         name="Settings"
-        component={Scan}
+        component={Settings}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Absent"
+        component={Absent}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
